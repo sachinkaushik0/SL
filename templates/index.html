@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accident Severity Predictor</title>
+    <title>Toronto Police</title>
     <style>
         body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: 0 auto; }
         h1 { color: #333; }
@@ -20,164 +20,151 @@
         .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
         input:checked + .slider { background-color: #2196F3; }
         input:checked + .slider:before { transform: translateX(26px); }
+
+        .button-container { display: flex; justify-content: flex-start; }
+        .button-container button { margin-right: 10px; }
+
+        .numeric-features { display: flex; flex-wrap: wrap; }
+        .numeric-column { flex: 1; min-width: 30%; margin-right: 10px; }
     </style>
 </head>
 <body>
-    <h1>Accident Severity Predictor</h1>
-    <button id="randomizeButton">Randomize Values</button>
+    <h1>Toronto Police 👮🏻‍♂️</h1>
+    
     <form id="predictionForm">
         <!-- Numeric features -->
-        <h2>Numeric Features</h2>
-        <div class="toggle-container">
-            <label for="VISIBILITY">VISIBILITY:</label>
-            <label class="toggle">
-                <input type="checkbox" id="VISIBILITY" name="VISIBILITY">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="LIGHT">LIGHT:</label>
-            <label class="toggle">
-                <input type="checkbox" id="LIGHT" name="LIGHT">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="RDSFCOND">RDSFCOND:</label>
-            <label class="toggle">
-                <input type="checkbox" id="RDSFCOND" name="RDSFCOND">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="Driver">Driver:</label>
-            <label class="toggle">
-                <input type="checkbox" id="Driver" name="Driver">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="PEDESTRIAN">PEDESTRIAN:</label>
-            <label class="toggle">
-                <input type="checkbox" id="PEDESTRIAN" name="PEDESTRIAN">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="CYCLIST">CYCLIST:</label>
-            <label class="toggle">
-                <input type="checkbox" id="CYCLIST" name="CYCLIST">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="AUTOMOBILE">AUTOMOBILE:</label>
-            <label class="toggle">
-                <input type="checkbox" id="AUTOMOBILE" name="AUTOMOBILE">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="MOTORCYCLE">MOTORCYCLE:</label>
-            <label class="toggle">
-                <input type="checkbox" id="MOTORCYCLE" name="MOTORCYCLE">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="TRUCK">TRUCK:</label>
-            <label class="toggle">
-                <input type="checkbox" id="TRUCK" name="TRUCK">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="TRSN_CITY_VEH">TRSN_CITY_VEH:</label>
-            <label class="toggle">
-                <input type="checkbox" id="TRSN_CITY_VEH" name="TRSN_CITY_VEH">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="EMERG_VEH">EMERG_VEH:</label>
-            <label class="toggle">
-                <input type="checkbox" id="EMERG_VEH" name="EMERG_VEH">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="PASSENGER">PASSENGER:</label>
-            <label class="toggle">
-                <input type="checkbox" id="PASSENGER" name="PASSENGER">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="SPEEDING">SPEEDING:</label>
-            <label class="toggle">
-                <input type="checkbox" id="SPEEDING" name="SPEEDING">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="AG_DRIV">AG_DRIV:</label>
-            <label class="toggle">
-                <input type="checkbox" id="AG_DRIV" name="AG_DRIV">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="REDLIGHT">REDLIGHT:</label>
-            <label class="toggle">
-                <input type="checkbox" id="REDLIGHT" name="REDLIGHT">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="ALCOHOL">ALCOHOL:</label>
-            <label class="toggle">
-                <input type="checkbox" id="ALCOHOL" name="ALCOHOL">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="DISABILITY">DISABILITY:</label>
-            <label class="toggle">
-                <input type="checkbox" id="DISABILITY" name="DISABILITY">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="Primary_Road">Primary_Road:</label>
-            <label class="toggle">
-                <input type="checkbox" id="Primary_Road" name="Primary_Road">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="Weekend">Weekend:</label>
-            <label class="toggle">
-                <input type="checkbox" id="Weekend" name="Weekend">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="At_Intersection">At Intersection:</label>
-            <label class="toggle">
-                <input type="checkbox" id="At_Intersection" name="At_Intersection">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="toggle-container">
-            <label for="Fatal_Injury">Fatal_Injury:</label>
-            <label class="toggle">
-                <input type="checkbox" id="Fatal_Injury" name="Fatal_Injury">
-                <span class="slider"></span>
-            </label>
+        <h2>Select the features</h2>
+        <div class="numeric-features">
+            <div class="numeric-column">
+                
+                
+                <div class="toggle-container">
+                    <label for="Driver">Driver:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="Driver" name="Driver">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-container">
+                    <label for="PEDESTRIAN">PEDESTRIAN:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="PEDESTRIAN" name="PEDESTRIAN">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-container">
+                    <label for="CYCLIST">CYCLIST:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="CYCLIST" name="CYCLIST">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-container">
+                    <label for="AUTOMOBILE">AUTOMOBILE:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="AUTOMOBILE" name="AUTOMOBILE">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="numeric-column">
+                <div class="toggle-container">
+                    <label for="MOTORCYCLE">MOTORCYCLE:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="MOTORCYCLE" name="MOTORCYCLE">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-container">
+                    <label for="TRUCK">TRUCK:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="TRUCK" name="TRUCK">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-container">
+                    <label for="TRSN_CITY_VEH">TRSN_CITY_VEH:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="TRSN_CITY_VEH" name="TRSN_CITY_VEH">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-container">
+                    <label for="EMERG_VEH">EMERG_VEH:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="EMERG_VEH" name="EMERG_VEH">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-container">
+                    <label for="PASSENGER">PASSENGER:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="PASSENGER" name="PASSENGER">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-container">
+                    <label for="SPEEDING">SPEEDING:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="SPEEDING" name="SPEEDING">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-container">
+                    <label for="AG_DRIV">AG_DRIV:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="AG_DRIV" name="AG_DRIV">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="numeric-column">
+                <div class="toggle-container">
+                    <label for="REDLIGHT">REDLIGHT:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="REDLIGHT" name="REDLIGHT">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-container">
+                    <label for="ALCOHOL">ALCOHOL:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="ALCOHOL" name="ALCOHOL">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-container">
+                    <label for="DISABILITY">DISABILITY:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="DISABILITY" name="DISABILITY">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-container">
+                    <label for="Primary_Road">Primary_Road:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="Primary_Road" name="Primary_Road">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-container">
+                    <label for="Weekend">Weekend:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="Weekend" name="Weekend">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-container">
+                    <label for="At_Intersection">At_Intersection:</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="At_Intersection" name="At_Intersection">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
         </div>
 
         <!-- Categorical features -->
-        <h2>Categorical Features</h2>
         <label for="DISTRICT">DISTRICT:</label>
         <select id="DISTRICT" name="DISTRICT" required>
             <option value="">Select District</option>
@@ -188,10 +175,36 @@
             <option value="nan">Unknown</option>
         </select>
 
+        <label for="VISIBILITY">VISIBILITY:</label>
+                <select id="VISIBILITY" name="VISIBILITY" required>
+                    <option value="0">Clear</option>
+                    <option value="1">Snow/Rain/Freezing Rain</option>
+                    <option value="2">Fog, Mist, Smoke, Dust/Drifting Snow/Strong wind</option>
+                    <option value="3">Other/Unknown</option>
+                </select>
+
+        <label for="LIGHT">LIGHT:</label>
+                <select id="LIGHT" name="LIGHT" required>
+                    <option value="0">Dark/Dark, artificial</option>
+                    <option value="1">Dusk/Dusk, artificial/Dawn/Dawn, artificial</option>
+                    <option value="2">Daylight/Daylight, artificial</option>
+                    <option value="3">Other/Unknown</option>
+                </select>
+        
+                <div class="categorical-column">
+                    <label for="RDSFCOND">RDSFCOND:</label>
+                    <select id="RDSFCOND" name="RDSFCOND" required>
+                        <option value="0">Wet/Slush/Spilled liquid</option>
+                        <option value="1">Ice/Loose Snow/Packed Snow</option>
+                        <option value="2">Dry</option>
+                        <option value="3">Loose Sand or Gravel</option>
+                        <option value="4">Other/Unknown</option>
+                    </select>
+
         <label for="DRIVACT_GROUPED">DRIVACT_GROUPED:</label>
         <select id="DRIVACT_GROUPED" name="DRIVACT_GROUPED" required>
             <option value="">Select Driver Action</option>
-            <option value="Other">Other</option>
+            <option value="Driving Properly">Driving Properly</option>
             <option value="Unknown">Unknown</option>
             <option value="Improper Maneuver">Improper Maneuver</option>
             <option value="Fail to Yield">Fail to Yield</option>
@@ -222,16 +235,11 @@
         <label for="INVAGE_GROUPED">INVAGE_GROUPED:</label>
         <select id="INVAGE_GROUPED" name="INVAGE_GROUPED" required>
             <option value="">Select Age Group</option>
-            <option value="45 to 54">45 to 54</option>
-            <option value="55 to 64">55 to 64</option>
-            <option value="35 to 44">35 to 44</option>
-            <option value="25 to 34">25 to 34</option>
-            <option value="65 to 74">65 to 74</option>
-            <option value="18 to 24">18 to 24</option>
-            <option value="75 to 84">75 to 84</option>
-            <option value="Under 18">Under 18</option>
-            <option value="85 to 94">85 to 94</option>
-            <option value="nan">Unknown</option>
+            <option value="Young">Young</option>
+            <option value="Young Adults">Young Adults</option>
+            <option value="Middle-Aged">Middle-Aged</option>
+            <option value="Older Adults">Older Adults</option>
+            <option value="Unknown">Unknown</option>
         </select>
 
         <label for="VEHTYPE_GROUPED">VEHTYPE_GROUPED:</label>
@@ -246,8 +254,21 @@
             <option value="nan">Unknown</option>
         </select>
 
-        <button type="submit">Predict Severity</button>
+        <label for="TRAFFCTL_GROUPED">TRAFFCTL_GROUPED:</label>
+        <select id="TRAFFCTL_GROUPED" name="TRAFFCTL_GROUPED" required>
+            <option value="">Select Traffic Control Condition</option>
+            <option value="No Control">No Control</option>
+            <option value="Traffic Signal">Traffic Signals and Signs</option>
+            <option value="Controlled Intersections">Controlled Intersections</option>
+        </select>
+        
+        <div class="button-container">
+            <button id="randomizeButton" type="button">Randomize Values</button>
+            <button type="submit">Predict Severity</button>
+        </div>
     </form>
+
+    <div id="result"></div>
 
     <div id="result"></div>
 
@@ -273,72 +294,87 @@
             document.getElementById('Primary_Road').checked = Math.random() >= 0.5;
             document.getElementById('Weekend').checked = Math.random() >= 0.5;
             document.getElementById('At_Intersection').checked = Math.random() >= 0.5;
-            document.getElementById('Fatal_Injury').checked = Math.random() >= 0.5;
 
             const districts = ['Toronto and East York', 'North York', 'Scarborough', 'Etobicoke York', 'nan'];
             document.getElementById('DISTRICT').value = districts[Math.floor(Math.random() * districts.length)];
 
-            const drivactGrouped = ['Other', 'Unknown', 'Improper Maneuver', 'Fail to Yield', 'Lost Control', 'Speed too fast', 'Disobey Sign/Signal/Light', 'Medical/Physical Disability', 'Speed too slow', 'Wrong Way', 'nan'];
+            const drivactGrouped = ['Driving Properly', 'Unknown', 'Improper Maneuver', 'Fail to Yield', 'Lost Control', 'Speed too fast', 'Disobey Sign/Signal/Light', 'Medical/Physical Disability', 'Speed too slow', 'Wrong Way', 'nan'];
             document.getElementById('DRIVACT_GROUPED').value = drivactGrouped[Math.floor(Math.random() * drivactGrouped.length)];
 
             const drivcondGrouped = ['Normal', 'Ability Impaired Alcohol', 'Inattentive', 'Medical/Physical Disability', 'Unknown', 'Ability Impaired, Drugs', 'Other', 'Fatigue', 'Had Been Drinking', 'nan'];
             document.getElementById('DRIVCOND_GROUPED').value = drivcondGrouped[Math.floor(Math.random() * drivcondGrouped.length)];
 
-            const invageGrouped = ['45 to 54', '55 to 64', '35 to 44', '25 to 34', '65 to 74', '18 to 24', '75 to 84', 'Under 18', '85 to 94', 'nan'];
+            const invageGrouped = ['Young', 'Young Adults', 'Middle-Aged', 'Older Adults', 'Unknown'];
             document.getElementById('INVAGE_GROUPED').value = invageGrouped[Math.floor(Math.random() * invageGrouped.length)];
 
             const vehtypeGrouped = ['Automobile', 'Truck', 'Motorcycle', 'Bicycle', 'Emergency Vehicle', 'Unknown', 'nan'];
             document.getElementById('VEHTYPE_GROUPED').value = vehtypeGrouped[Math.floor(Math.random() * vehtypeGrouped.length)];
+            
+            const TRAFFCTL_GROUPED = ['No Control', 'Traffic Signals and Signs', 'Controlled Intersections'];
+            document.getElementById('TRAFFCTL_GROUPED').value = TRAFFCTL_GROUPED[Math.floor(Math.random() * TRAFFCTL_GROUPED.length)];
+        
         });
 
         document.getElementById('predictionForm').addEventListener('submit', function (e) {
-        e.preventDefault();
+            e.preventDefault();
 
-        const formData = {
-            VISIBILITY: document.getElementById('VISIBILITY').checked ? 1 : 0,
-            LIGHT: document.getElementById('LIGHT').checked ? 1 : 0,
-            RDSFCOND: document.getElementById('RDSFCOND').checked ? 1 : 0,
-            Driver: document.getElementById('Driver').checked ? 1 : 0,
-            PEDESTRIAN: document.getElementById('PEDESTRIAN').checked ? 1 : 0,
-            CYCLIST: document.getElementById('CYCLIST').checked ? 1 : 0,
-            AUTOMOBILE: document.getElementById('AUTOMOBILE').checked ? 1 : 0,
-            MOTORCYCLE: document.getElementById('MOTORCYCLE').checked ? 1 : 0,
-            TRUCK: document.getElementById('TRUCK').checked ? 1 : 0,
-            TRSN_CITY_VEH: document.getElementById('TRSN_CITY_VEH').checked ? 1 : 0,
-            EMERG_VEH: document.getElementById('EMERG_VEH').checked ? 1 : 0,
-            PASSENGER: document.getElementById('PASSENGER').checked ? 1 : 0,
-            SPEEDING: document.getElementById('SPEEDING').checked ? 1 : 0,
-            AG_DRIV: document.getElementById('AG_DRIV').checked ? 1 : 0,
-            REDLIGHT: document.getElementById('REDLIGHT').checked ? 1 : 0,
-            ALCOHOL: document.getElementById('ALCOHOL').checked ? 1 : 0,
-            DISABILITY: document.getElementById('DISABILITY').checked ? 1 : 0,
-            Primary_Road: document.getElementById('Primary_Road').checked ? 1 : 0,
-            Weekend: document.getElementById('Weekend').checked ? 1 : 0,
-            At_Intersection: document.getElementById('At_Intersection').checked ? 1 : 0,
-            Fatal_Injury: document.getElementById('Fatal_Injury').checked ? 1 : 0,
-            DISTRICT: document.getElementById('DISTRICT').value,
-            DRIVACT_GROUPED: document.getElementById('DRIVACT_GROUPED').value,
-            DRIVCOND_GROUPED: document.getElementById('DRIVCOND_GROUPED').value,
-            INVAGE_GROUPED: document.getElementById('INVAGE_GROUPED').value,
-            VEHTYPE_GROUPED: document.getElementById('VEHTYPE_GROUPED').value,
-        };
+            const formData = {
+                VISIBILITY: document.getElementById('VISIBILITY').checked ? 1 : 0,
+                LIGHT: document.getElementById('LIGHT').checked ? 1 : 0,
+                RDSFCOND: document.getElementById('RDSFCOND').checked ? 1 : 0,
+                Driver: document.getElementById('Driver').checked ? 1 : 0,
+                PEDESTRIAN: document.getElementById('PEDESTRIAN').checked ? 1 : 0,
+                CYCLIST: document.getElementById('CYCLIST').checked ? 1 : 0,
+                AUTOMOBILE: document.getElementById('AUTOMOBILE').checked ? 1 : 0,
+                MOTORCYCLE: document.getElementById('MOTORCYCLE').checked ? 1 : 0,
+                TRUCK: document.getElementById('TRUCK').checked ? 1 : 0,
+                TRSN_CITY_VEH: document.getElementById('TRSN_CITY_VEH').checked ? 1 : 0,
+                EMERG_VEH: document.getElementById('EMERG_VEH').checked ? 1 : 0,
+                PASSENGER: document.getElementById('PASSENGER').checked ? 1 : 0,
+                SPEEDING: document.getElementById('SPEEDING').checked ? 1 : 0,
+                AG_DRIV: document.getElementById('AG_DRIV').checked ? 1 : 0,
+                REDLIGHT: document.getElementById('REDLIGHT').checked ? 1 : 0,
+                ALCOHOL: document.getElementById('ALCOHOL').checked ? 1 : 0,
+                DISABILITY: document.getElementById('DISABILITY').checked ? 1 : 0,
+                Primary_Road: document.getElementById('Primary_Road').checked ? 1 : 0,
+                Weekend: document.getElementById('Weekend').checked ? 1 : 0,
+                At_Intersection: document.getElementById('At_Intersection').checked ? 1 : 0,
+                DISTRICT: document.getElementById('DISTRICT').value,
+                DRIVACT_GROUPED: document.getElementById('DRIVACT_GROUPED').value,
+                DRIVCOND_GROUPED: document.getElementById('DRIVCOND_GROUPED').value,
+                INVAGE_GROUPED: document.getElementById('INVAGE_GROUPED').value,
+                VEHTYPE_GROUPED: document.getElementById('VEHTYPE_GROUPED').value,
+                TRAFFCTL_GROUPED: document.getElementById('TRAFFCTL_GROUPED').value,
+            };
+            console.log("Form data being sent:", formData);
 
-        fetch('/predict', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            const outcome = data.prediction === 1 ? 'Killed' : 'Survived';
-            document.getElementById('result').innerText = 'Prediction Outcome: ' + outcome;
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    });
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then((response) => {
+                console.log("Raw response:", response);
+                return response.json();
+            })
+            .then((data) => {
+                console.log("Parsed prediction data:", data);
+                console.log("Predicted severity:", data.predicted_severity);
+                console.log("Probability of fatal:", data.probability_of_fatal);
+                console.log("Raw prediction:", data.raw_prediction);
+                
+                const outcome = data.predicted_severity === "Fatal" ? 'Be careful, You might Kill yourself today!' : 'You dont die today.';
+                console.log("Determined outcome:", outcome);
+                
+                document.getElementById('result').innerText = 'Toronto Police: ' + outcome;
+                console.log("UI updated with prediction:", document.getElementById('result').innerText);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+            });
     </script>
 </body>
 </html>
